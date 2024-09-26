@@ -28,70 +28,79 @@ body {
 
 .search-section {
   display: flex;
-  gap: 10px;
+  align-items: center; /* Alinha verticalmente todos os itens */
   padding: 25px;
-  align-items: center;
 }
 
-.search-section .input-wrapper {
+.input-wrapper {
   height: 54px;
-  width: 100%;
+  flex-grow: 1; /* O input ocupa todo o espaço disponível */
   position: relative;
 }
 
-.search-section .input-wrapper span {
-  position: absolute;
-  top: 50%;
-  left: 17px;
-  pointer-events: none;
-  transform: translateY(-50%);
+.input-wrapper h4 {
+  margin-bottom: 10px; /* Espaço entre o título e o input */
+  font-size: 1.2rem; /* Tamanho da fonte do título */
+  color: #5f41e4; /* Cor do texto do título */
 }
 
-.search-section .search-input {
+.search-container {
+  display: flex; /* Flex para alinhar ícone e input */
+  align-items: center; /* Alinha verticalmente */
+  height: 100%; /* Garante que a altura seja consistente */
+  position: relative;
+}
+
+.search-container span {
+  position: absolute;
+  left: 15px; /* Posição do ícone da lupa */
+  pointer-events: none;
+}
+
+.search-input {
   height: 100%;
-  width: 100%;
+  width: 100%; /* O input ocupa toda a largura disponível */
+  padding: 0 20px 0 40px; /* Ajuste de padding para incluir a lupa */
+  border: 1px solid #beb0ff;
+  border-radius: 6px;
   outline: none;
   font-size: 1rem;
   font-weight: 500;
-  border-radius: 6px;
-  text-transform: uppercase;
-  padding: 0 20px 0 50px;
-  border: 1px solid #beb0ff;
-  background: #fff;
   transition: 0.1s ease;
 }
 
-.search-section .search-input:focus {
+.search-input:focus {
   border-color: #5f41e4;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.14);
 }
 
-.search-section .search-input::placeholder {
+.search-input::placeholder {
   text-transform: none;
 }
 
-.search-section .location-button {
-  height: 54px;
+.location-button {
+  height: 54px; /* Altura igual ao input */
   width: 56px;
   cursor: pointer;
-  flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: center; /* Centraliza verticalmente o ícone */
   justify-content: center;
   border-radius: 5px;
   background: #fff;
   color: #5f41e4;
   border: 1px solid #beb0ff;
+  margin-left: 10px; /* Espaço entre o input e o botão */
   transition: 0.3s ease;
+  margin-top: 70px; /* Ajusta o alinhamento vertical do botão */
 }
 
-.search-section .location-button:hover {
+.location-button:hover {
   color: #fff;
   background: #5f41e4;
   border-color: #5f41e4;
 }
 
-.search-section .location-button span {
+.location-button span {
   font-size: 1.3rem;
 }
 
@@ -193,14 +202,13 @@ body.show-no-results .weather-section {
 }
 
 .footer {
-    text-align: center;
-    padding: 15px 0;
-    background-color: #f8f8f8; /* Cor de fundo do rodapé */
-    border-top: 1px solid #d5ccff; /* Linha separadora */
-    font-size: 0.9rem; /* Tamanho da fonte */
-    color: #5f41e4; /* Cor do texto */
-  }
-  
+  text-align: center;
+  padding: 15px 0;
+  background-color: #f8f8f8; /* Cor de fundo do rodapé */
+  border-top: 1px solid #d5ccff; /* Linha separadora */
+  font-size: 0.9rem; /* Tamanho da fonte */
+  color: #5f41e4; /* Cor do texto */
+}
 
 /* Responsividade para telas pequenas */
 @media (max-width: 624px) {

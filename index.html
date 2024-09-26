@@ -10,17 +10,21 @@
   <script src="js/scripts.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <!-- Seção de Pesquisa -->
-    <div class="search-section">
-      <div class="input-wrapper">
-        <span class="material-symbols-rounded">search</span>
-        <input type="search" placeholder="Digite o nome da cidade" class="search-input">
-      </div>
-      <button class="location-button">
-        <span class="material-symbols-rounded">my_location</span>
-      </button>
+  <div class="container">    
+        <!-- Seção de Pesquisa -->
+<div class="search-section">
+    <div class="input-wrapper">
+        <h4>Escolha a cidade</h4> <!-- Título acima da caixa de input -->
+        <div class="search-container"> <!-- Adicionada para melhor controle de layout -->
+            <span class="material-symbols-rounded">search</span>
+            <input type="search" placeholder="Digite o nome da cidade" class="search-input">
+        </div>
     </div>
+    <button class="location-button">
+        <span class="material-symbols-rounded">my_location</span>
+    </button>
+</div>
+|
 
     <!-- Mensagem de erro - Sem resultados -->
     <div class="no-results">

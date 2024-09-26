@@ -107,4 +107,4 @@ locationButton.addEventListener("click", () => {
 });
 
 // Solicitação inicial de clima para Londres como a cidade padrão
-configurarSolicitacaoClima("Londres");
+configurarSolicitacaoClima("Lisboa");
