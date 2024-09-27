@@ -36,10 +36,10 @@ const exibirPrevisaoHoraria = (dadosHorarios) => {
     const iconeClima = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(item.condition.code));
 
     return `<li class="weather-item">
-              <p class="time">${tempo}</p>
-              <img src="icons/${iconeClima}.svg" class="weather-icon">
-              <p class="temperature">${temperatura}°</p>
-            </li>`;
+            <p class="time">${tempo}</p>
+            <img src="icons/${iconeClima}.svg" class="weather-icon">
+            <p class="temperature">${temperatura}°</p>
+          </li>`;
   }).join('');
 };
 
@@ -71,6 +71,16 @@ const obterDetalhesDoClima = async (API_URL) => {
 
     searchInput.value = data.location.name;
     exibirPrevisaoHoraria(dadosHorariosCombinados);
+
+    // Salvar cidade no histórico
+    salvarNoHistorico(data.location.name);
+
+    // Remover histórico de cidades quando uma nova cidade é buscada
+    document.querySelector(".historico")?.remove();
+
+    // Exibir o histórico após a busca
+    mostrarHistorico();
+
   } catch (error) {
     document.body.classList.add("show-no-results");
   }
@@ -108,3 +118,36 @@ locationButton.addEventListener("click", () => {
 
 // Solicitação inicial de clima para Lisboa como a cidade padrão
 configurarSolicitacaoClima("Lisboa");
+
+// Armazenar a cidade no histórico local
+const salvarNoHistorico = (nomeCidade) => {
+  let historico = JSON.parse(localStorage.getItem("historico")) || [];
+  if (!historico.includes(nomeCidade)) {
+    historico.push(nomeCidade);
+    localStorage.setItem("historico", JSON.stringify(historico));
+  }
+};
+
+// Mostrar histórico de cidades pesquisadas
+const mostrarHistorico = () => {
+  let historico = JSON.parse(localStorage.getItem("historico")) || [];
+  if (historico.length > 0) {
+    const historicoDiv = document.createElement("div");
+    historicoDiv.className = "historico";
+    historicoDiv.innerHTML = `<h3>Histórico de Cidades Pesquisadas:</h3>` + 
+      historico.map(cidade => `<p>${cidade}</p>`).join("");
+
+    currentWeatherDiv.appendChild(historicoDiv);
+
+    // Permitir ao usuário clicar na cidade para carregar
+    historicoDiv.addEventListener("click", (e) => {
+      if (e.target.tagName === "P") {
+        configurarSolicitacaoClima(e.target.innerText);
+      }
+    });
+  }
+};
+
+// Mostrar o histórico ao carregar a página
+// Se quiser ocultar ao carregar, remova esta linha ou altere a lógica
+// mostrarHistorico(); 

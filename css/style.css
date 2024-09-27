@@ -1,5 +1,5 @@
 /* Importando fontes do Google - Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700;900&display=swap');
 
 * {
   margin: 0;
@@ -104,6 +104,13 @@ body {
   font-size: 1.3rem;
 }
 
+.historico {
+  background-color: rgba(255, 255, 255, 0.8); /* Fundo claro para destaque */
+  padding: 10px;
+  margin-top: 10px; /* Espaço entre o clima atual e o histórico */
+  border-radius: 5px; /* Bordas arredondadas */
+}
+
 /* Estilo para quando não há resultados */
 .no-results {
   position: absolute;
@@ -199,6 +206,24 @@ body.show-no-results .weather-section {
 .hourly-weather .weather-item .weather-icon {
   width: 28px;
   aspect-ratio: 1;
+}
+
+/* Customização da barra de rolagem para WebKit (Chrome, Safari) */
+.hourly-weather .weather-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hourly-weather .weather-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hourly-weather .weather-list::-webkit-scrollbar-thumb {
+  background: #bfbfbf;
+  border-radius: 3px;
+}
+
+.hourly-weather .weather-list::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 .footer {
