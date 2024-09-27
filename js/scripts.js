@@ -71,6 +71,10 @@ const obterDetalhesDoClima = async (API_URL) => {
 
     searchInput.value = data.location.name;
     exibirPrevisaoHoraria(dadosHorariosCombinados);
+
+    // Salvar cidade no histórico
+    salvarNoHistorico(data.location.name);
+
   } catch (error) {
     document.body.classList.add("show-no-results");
   }
@@ -106,5 +110,35 @@ locationButton.addEventListener("click", () => {
   );
 });
 
-// Solicitação inicial de clima para Londres como a cidade padrão
+// Solicitação inicial de clima para Lisboa como a cidade padrão
 configurarSolicitacaoClima("Lisboa");
+
+// Armazenar a cidade no histórico local
+const salvarNoHistorico = (nomeCidade) => {
+  let historico = JSON.parse(localStorage.getItem("historico")) || [];
+  if (!historico.includes(nomeCidade)) {
+    historico.push(nomeCidade);
+    localStorage.setItem("historico", JSON.stringify(historico));
+  }
+};
+
+// Mostrar histórico de cidades pesquisadas
+const mostrarHistorico = () => {
+  let historico = JSON.parse(localStorage.getItem("historico")) || [];
+  if (historico.length > 0) {
+    const historicoDiv = document.createElement("div");
+    historicoDiv.className = "historico";
+    historicoDiv.innerHTML = historico.map(cidade => `<p>${cidade}</p>`).join("");
+    document.body.appendChild(historicoDiv);
+
+    // Permitir ao usuário clicar na cidade para carregar
+    historicoDiv.addEventListener("click", (e) => {
+      if (e.target.tagName === "P") {
+        configurarSolicitacaoClima(e.target.innerText);
+      }
+    });
+  }
+};
+
+// Mostrar o histórico ao carregar a página
+mostrarHistorico();
